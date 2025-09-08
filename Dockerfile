@@ -1,20 +1,18 @@
-# Use official Node.js LTS image
+# Use official Node.js runtime
 FROM node:20-alpine
 
 # Set working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json first
+# Copy dependency files and install
 COPY package*.json ./
-
-# Install dependencies
 RUN npm install --production
 
-# Copy rest of the code
+# Copy the rest of the code
 COPY . .
 
-# Expose port
-EXPOSE 4001
+# Expose the service port
+EXPOSE 4001    
 
-# Start the service
+# Start the app
 CMD ["npm", "start"]
